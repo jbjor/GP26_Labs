@@ -1,4 +1,5 @@
 
+#include <math.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,11 +12,10 @@ void verify(float *A, float *B, float *C, int n) {
 
   for (int i = 0; i < n; i++) {
     float sum = A[i] + B[i];
-    float relativeError = (sum - C[i]) / sum;
-    if (relativeError > relativeTolerance ||
-        relativeError < -relativeTolerance) {
+    if (!isfinite(C[i]) ||
+        fabsf(sum - C[i]) > relativeTolerance * fmaxf(1.0f, fabsf(sum))) {
       printf("TEST FAILED\n\n");
-      exit(0);
+      exit(EXIT_FAILURE);
     }
   }
   printf("TEST PASSED\n\n");
