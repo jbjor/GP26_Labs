@@ -1,3 +1,4 @@
+#include <math.h>
 
 
 #include <stdlib.h>
@@ -10,7 +11,7 @@ Matrix allocateMatrix(unsigned height, unsigned width)
 	Matrix mat;
 	mat.height = height;
 	mat.width = mat.pitch = width;
-	mat.elements = (float*)malloc(height*width*sizeof(float));
+	mat.elements = (float*)malloc((size_t)height*width*sizeof(float));
 	if(mat.elements == NULL) FATAL("Unable to allocate host");
 
 	return mat;
@@ -18,7 +19,7 @@ Matrix allocateMatrix(unsigned height, unsigned width)
 
 void initMatrix(Matrix mat)
 {
-    for (unsigned int i=0; i < mat.height*mat.width; i++) {
+    for (size_t i=0; i < (size_t)mat.height*mat.width; i++) {
         mat.elements[i] = (rand()%100)/100.00;
     }
 }
@@ -30,7 +31,7 @@ Matrix allocateDeviceMatrix(unsigned height, unsigned width)
 
 	mat.height = height;
 	mat.width = mat.pitch = width;
-	cuda_ret = cudaMalloc((void**)&(mat.elements), height*width*sizeof(float));
+	cuda_ret = cudaMalloc((void**)&(mat.elements), (size_t)height*width*sizeof(float));
 	if(cuda_ret != cudaSuccess) FATAL("Unable to allocate device memory");
 
 	return mat;
@@ -39,14 +40,14 @@ Matrix allocateDeviceMatrix(unsigned height, unsigned width)
 void copyToDeviceMatrix(Matrix dst, Matrix src)
 {
 	cudaError_t cuda_ret;
-	cuda_ret = cudaMemcpy(dst.elements, src.elements, src.height*src.width*sizeof(float), cudaMemcpyHostToDevice);
+	cuda_ret = cudaMemcpy(dst.elements, src.elements, (size_t)src.height*src.width*sizeof(float), cudaMemcpyHostToDevice);
 	if(cuda_ret != cudaSuccess) FATAL("Unable to copy to device");
 }
 
 void copyFromDeviceMatrix(Matrix dst, Matrix src)
 {
 	cudaError_t cuda_ret;
-	cuda_ret = cudaMemcpy(dst.elements, src.elements, src.height*src.width*sizeof(float), cudaMemcpyDeviceToHost);
+	cuda_ret = cudaMemcpy(dst.elements, src.elements, (size_t)src.height*src.width*sizeof(float), cudaMemcpyDeviceToHost);
 	if(cuda_ret != cudaSuccess) FATAL("Unable to copy from device");
 }
 
@@ -62,15 +63,15 @@ void verify(Matrix M, Matrix  N, Matrix P) {
             int iN = row - M.height/2 + i;
             int jN = col - M.width/2 + j;
             if(iN >= 0 && iN < N.height && jN >= 0 && jN < N.width) {
-                sum += M.elements[i*M.width + j]*N.elements[iN*N.width + jN];
+                sum += M.elements[(size_t)i*M.width + j]*N.elements[(size_t)iN*N.width + jN];
             }
         }
       }
-      float relativeError = (sum - P.elements[row*P.width + col])/sum;
-      if (relativeError > relativeTolerance
-        || relativeError < -relativeTolerance) {
+      float actual = P.elements[(size_t)row*P.width + col];
+      if (!isfinite(actual) || fabsf(sum - actual) >
+          relativeTolerance * fmaxf(1.0f, fabsf(sum))) {
         printf("TEST FAILED\n\n");
-        exit(0);
+        exit(EXIT_FAILURE);
       }
     }
   }
@@ -86,7 +87,7 @@ void freeMatrix(Matrix mat)
 
 void freeDeviceMatrix(Matrix mat)
 {
-	cudaFree(mat.elements);
+	if (cudaFree(mat.elements) != cudaSuccess) FATAL("Unable to free device memory");
 	mat.elements = NULL;
 }
 
