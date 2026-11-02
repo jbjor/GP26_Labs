@@ -1,6 +1,7 @@
 
 
 #include <stdint.h>
+#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -15,13 +16,13 @@ void verify(float *A, float *B, float *C, unsigned int m, unsigned int k,
     for(int col = 0; col < n; ++col) {
       float sum = 0;
       for(unsigned int i = 0; i < k; ++i) {
-        sum += A[row*k + i]*B[i*n + col];
+        sum += A[(size_t)row*k + i]*B[(size_t)i*n + col];
       }
-      float relativeError = (sum - C[row*n + col])/sum;
-      if (relativeError > relativeTolerance
-        || relativeError < -relativeTolerance) {
+      float actual = C[(size_t)row*n + col];
+      if (!isfinite(actual) || fabsf(sum - actual) >
+          relativeTolerance * fmaxf(1.0f, fabsf(sum))) {
         printf("TEST FAILED\n\n");
-        exit(0);
+        exit(EXIT_FAILURE);
       }
     }
   }
