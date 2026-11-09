@@ -86,6 +86,8 @@ int main(int argc, char **argv) {
   startTime(&timer);
 
   // INSERT CODE HERE
+  //vecAddKernel(a_d, b_d, c_d, n);
+  vecAddKernel<<<(n + 255) / 256, 256>>>(a_d, b_d, c_d, n);
 
   cuda_ret = cudaDeviceSynchronize();
   if (cuda_ret != cudaSuccess)
