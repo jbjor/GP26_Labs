@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-  // Host memory
+  // In host memory
 
   float *A_h = (float *)malloc(sizeof(float) * n);
   for (unsigned int i = 0; i < n; i++) {
@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
   printf("    Vector size = %u\n", n);
 
   // Allocate device variables ----------------------------------------------
-  // aka. allocate device/GPU memory
+  // aka. allocate device/GPU memory and variables
 
   printf("Allocating device variables...");
   fflush(stdout);
@@ -70,8 +70,11 @@ int main(int argc, char **argv) {
   startTime(&timer);
 
   // INSERT CODE HERE
+  cudaMemcpy(a_d, A_h, n*sizeof(float), cudaMemcpyHostToDevice);
+  cudaMemcpy(b_d, B_h, n*sizeof(float), cudaMemcpyHostToDevice);
 
-  cudaDeviceSynchronize();
+
+  cudaDeviceSynchronize();    // wait on above to all finish before continuing
   stopTime(&timer);
   printf("%f s\n", elapsedTime(timer));
 
@@ -97,6 +100,7 @@ int main(int argc, char **argv) {
   startTime(&timer);
 
   // INSERT CODE HERE
+  cudaMemcpy(C_h, c_d, n*sizeof(float), cudaMemcpyDeviceToHost);
 
   cudaDeviceSynchronize();
   stopTime(&timer);
@@ -111,11 +115,16 @@ int main(int argc, char **argv) {
 
   // Free memory ------------------------------------------------------------
 
+  // free host memory
   free(A_h);
   free(B_h);
   free(C_h);
 
+  // free device memory too
   // INSERT CODE HERE
+  cudaFree(a_d);
+  cudaFree(b_d);
+  cudaFree(c_d);
 
   return 0;
 }
