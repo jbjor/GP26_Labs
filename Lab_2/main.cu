@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
   fflush(stdout);
   startTime(&timer);
 
-  unsigned int n;
+  unsigned int n;       // Vector size !
   if (argc == 1) {
     n = 10000;
   } else if (argc == 2) {
@@ -25,6 +25,8 @@ int main(int argc, char **argv) {
            "\n");
     exit(0);
   }
+
+  // Host memory
 
   float *A_h = (float *)malloc(sizeof(float) * n);
   for (unsigned int i = 0; i < n; i++) {
@@ -38,17 +40,24 @@ int main(int argc, char **argv) {
 
   float *C_h = (float *)malloc(sizeof(float) * n);
 
+  // Print host memory allocation times
   stopTime(&timer);
   printf("%f s\n", elapsedTime(timer));
   printf("    Vector size = %u\n", n);
 
   // Allocate device variables ----------------------------------------------
+  // aka. allocate device/GPU memory
 
   printf("Allocating device variables...");
   fflush(stdout);
   startTime(&timer);
 
   // INSERT CODE HERE
+  float *a_d, *b_d, *c_d;
+  cudaMalloc((void**) &a_d, n*sizeof(float));
+  cudaMalloc((void**) &b_d, n*sizeof(float));
+  cudaMalloc((void**) &c_d, n*sizeof(float));
+
 
   cudaDeviceSynchronize();
   stopTime(&timer);
@@ -67,6 +76,7 @@ int main(int argc, char **argv) {
   printf("%f s\n", elapsedTime(timer));
 
   // Launch kernel ----------------------------------------------------------
+  // also Initialize thread block and kernel grid dimensions
 
   printf("Launching kernel...");
   fflush(stdout);
