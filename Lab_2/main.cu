@@ -86,8 +86,12 @@ int main(int argc, char **argv) {
   startTime(&timer);
 
   // INSERT CODE HERE
-  //vecAddKernel(a_d, b_d, c_d, n);
-  vecAddKernel<<<(n + 255) / 256, 256>>>(a_d, b_d, c_d, n);
+  const unsigned int numThreadsPerBlock = 256;
+
+  // Grid size or number of blocks is the number of blocks needed to cover all elements
+  const unsigned int numBlocks = n / numThreadsPerBlock;
+  
+  vecAddKernel<<<numBlocks, numThreadsPerBlock>>>(a_d, b_d, c_d, n);
 
   cuda_ret = cudaDeviceSynchronize();
   if (cuda_ret != cudaSuccess)
