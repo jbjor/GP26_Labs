@@ -1,0 +1,55 @@
+Thread kernel calc
+
+if (blockIdx.x == 38) {
+    if (threadIdx.x == 9983) {
+      printf("Block %d, Thread %d: idx = %d\n", blockIdx.x, threadIdx.x, idx);
+      
+    }
+    if (threadIdx.x > (n % blockIdx + 1)- 1) {  // when we have threads in last block that are not needed
+      // do nothing
+    }
+    else {
+        if (idx < n) {
+            C[idx] = A[idx] + B[idx];
+        }
+    }
+
+  }
+  else {
+    if (idx < n) {
+    C[idx] = A[idx] + B[idx];
+    }
+  }
+
+
+
+*** Basic vec add ***
+
+if (idx < n) {
+    C[idx] = A[idx] + B[idx];
+  }
+
+
+if (blockIdx.x == 38) {
+    if (threadIdx.x == 9983) {
+      printf("Block %d, Thread %d: idx = %d\n", blockIdx.x, threadIdx.x, idx);
+      
+    }
+    if (idx < n - 15) {
+      C[idx] = A[idx] + B[idx];
+    } 
+    
+
+  }
+  else {
+    if (idx < n) {
+    C[idx] = A[idx] + B[idx];
+    }
+  }
+
+
+
+
+for (int i = 0; i < 10; i++) {
+        printf("A[%d] = %f, B[%d] = %f\n", idx + i, A[idx + i], idx + i, B[idx + i]);
+      }
