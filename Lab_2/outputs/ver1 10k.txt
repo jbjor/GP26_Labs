@@ -1,0 +1,16 @@
+[johanneb@roihu-gpu-login2 Lab_2]$ cat lab2_2996363.out 
+nvcc -c -o main.o main.cu -O3 -arch=sm_90
+nvcc -c -o support.o support.cu -O3 -arch=sm_90
+nvcc main.o support.o -o vecadd -lcudart
+nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+
+Setting up the problem...0.000296 s
+    Vector size = 10000
+Allocating device variables...0.549833 s
+Copying data from host to device...0.000005 s
+Launching kernel...0.000003 s
+Copying data from device to host...0.000003 s
+Verifying results...TEST FAILED
+
+srun: error: rg1101: task 0: Exited with exit code 1
+srun: Terminating StepId=2996363.0
