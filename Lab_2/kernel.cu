@@ -11,25 +11,15 @@ __global__ void vecAddKernel(float *A, float *B, float *C, int n) {
   // Use global index to determine which elements to read, add, and write ---
 
   // INSERT KERNEL CODE HERE
-  if (blockIdx.x == 38) {
-    if (threadIdx.x == 9983) {
-      printf("Block %d, Thread %d: idx = %d\n", blockIdx.x, threadIdx.x, idx);
-      
-    }
-    if (threadIdx.x > (n % blockIdx.x + 1)- 1) {  // when we have threads in last block that are not needed
-      // do nothing                               // - 1 due to 0-based indexing
-    }                                             // + 1 for same reason
-    else {
-        if (idx < n) {
-            C[idx] = A[idx] + B[idx];
-        }
-    }
+  // Check if idx is within bounds of the arrays
+  if (idx < n) { 
+    C[idx] = A[idx] + B[idx]; // Perform vector addition
+  }
+  else { // Else try to do nothing
+    // Handle out-of-bounds threads (optional)
+    // For example, you could set C[idx] to 0 or some other value
+    // C[idx] = 0.0f;
+  }
 
-  }
-  else {
-    if (idx < n) {
-    C[idx] = A[idx] + B[idx];
-    }
-  }
 
 }
