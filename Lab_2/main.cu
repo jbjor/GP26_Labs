@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
 
   unsigned int n;       // Vector size !
   if (argc == 1) {
-    n = 10000;
+    n = 10000;  // default vector size
   } else if (argc == 2) {
     n = atoi(argv[1]);
   } else {
