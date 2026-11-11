@@ -1,0 +1,5 @@
+Here is how those variables fit together in a 1D grid:
+• threadIdx.x (Local ID): Identifies the thread's position within its own block. If a block has 256 threads, threadIdx.x goes from 0 to 255 and then resets to 0 for the next block.
+• blockIdx.x (Block ID): Identifies which block the thread belongs to within the entire grid.
+• blockDim.x (Block Size): Holds the total number of threads inside each block.
+• i (Global ID): Combines those three values using blockDim.x * blockIdx.x + threadIdx.x. This produces a unique number for every single thread across the entire GPU grid, allowing each thread to map cleanly to one element in your arrays.
