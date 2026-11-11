@@ -1,4 +1,34 @@
-for last block
+where are the print out statemetns
+    -in my notes!
+        lect 3
+        printf("Error: %s\n", cudaGetErrorString(err));
+        
+
+
+print out whole last block,
+    at start of last block and
+    at last thread
+
+For last block:
 
 if last block
     if thread idx > max, do nothing?
+        lect4:
+        if(threadIdx.x < 24)
+
+try using the lastCuda error thingy?
+
+
+HC solution is using modulo to find the out of bounds part
+
+
+hur går man över n?
+    -last block - rest + 1
+    ->
+    if idx 
+
+
+
+!!!
+are the not-needed cores in the last block overwriting my data?
+due to n / block amount gives a rest?
