@@ -13,7 +13,7 @@ __global__ void vecAddKernel(float *A, float *B, float *C, int n) {
   // INSERT KERNEL CODE HERE
   // Check if idx is within bounds of the arrays
   if (idx < n) { 
-    printf("Thread %d: Adding A[%d] = %f and B[%d] = %f\n", idx, idx, A[idx], idx, B[idx]);
+    //printf("Thread %d: Adding A[%d] = %f and B[%d] = %f\n", idx, idx, A[idx], idx, B[idx]);
     C[idx] = A[idx] + B[idx]; // Perform vector addition
   }
   else { // Else try to do nothing
