@@ -16,9 +16,10 @@ __global__ void vecAddKernel(float *A, float *B, float *C, int n) {
     C[idx] = A[idx] + B[idx]; // Perform vector addition
   }
   else { // Else try to do nothing
+
     // Handle out-of-bounds threads (optional)
     // For example, you could set C[idx] to 0 or some other value
-    // C[idx] = 0.0f;
+    C[idx] = 0.0f;
   }
 
 
