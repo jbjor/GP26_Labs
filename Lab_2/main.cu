@@ -86,11 +86,11 @@ int main(int argc, char **argv) {
   startTime(&timer);
 
   // INSERT CODE HERE
-  //const unsigned int numThreadsPerBlock = 256;
-  const unsigned int numThreadsPerBlock = 4; // For testing purposes, we can use a smaller number of threads per block
+  const unsigned int numThreadsPerBlock = 256;
+  //const unsigned int numThreadsPerBlock = 4; // For testing purposes, we can use a smaller number of threads per block
 
   // Grid size or number of blocks is the number of blocks needed to cover all elements
-  const unsigned int numBlocks = n / numThreadsPerBlock;
+  const unsigned int numBlocks = n / numThreadsPerBlock + (n % numThreadsPerBlock ? 1 : 0); // Add an extra block if there is a remainder
   printf("Number of blocks: %d, Number of threads per block: %d\n", numBlocks, numThreadsPerBlock);
   
   vecAddKernel<<<numBlocks, numThreadsPerBlock>>>(a_d, b_d, c_d, n);
