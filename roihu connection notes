@@ -68,3 +68,6 @@ Asked vsc copilot
 		-choose roihu-gpu
 		-choose linux
 		-enter roihu psw
+
+		to exit
+		   - close window, or ctrl+shift+p / bottom left green >< icon
