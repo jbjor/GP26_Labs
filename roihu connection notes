@@ -1,0 +1,70 @@
+
+
+*___ Once ___*
+
+in pwrshell
+
+ssh-keygen -a 100 -t ed25519
+
+	-path for key, when asked, is to be given without ' but w/ /filename
+		C:\Users\johan\Documents\GPU_prog\ssh
+		-filename usually id_ed25519
+	-folder must exist
+
+-login to CSC
+	-my.csc.fi
+
+-profile > public SSH keys
+	-drag n drop .pub file
+	-wait 5 min for appearance
+
+
+
+*___ Every Day ___*
+
+-login to CSC
+	-my.csc.fi
+
+
+-profile > public SSH keys
+	-click 3 dots after pub key
+	-download certificate
+	-replace from downloads to C:\Users\johan\Documents\GPU prog\ssh
+
+
+
+*___ every Time ___*
+
+pwrshell connectin to roihu
+
+ssh <username>@<host>.csc.fi -i <path-to-private-key> -i <path-to-certificate>
+
+ssh johanneb@roihu-gpu.csc.fi -i 'C:\Users\johan\Documents\GPU_prog\ssh\id_ed25519' -i 'C:\Users\johan\Documents\GPU_prog\ssh\cert.pub'
+
+	-psw:
+		-fill in blank, in one word
+			"hakkaa yewii, ostan __________"
+logout cmd: exit
+
+
+scp `
+  -i "C:\Users\johan\Documents\GPU_prog\ssh\id_ed25519" `
+  -o CertificateFile=C:/Users/johan/Documents/GPU_prog/ssh/cert.pub `
+  johanneb@roihu-cpu.csc.fi:/users/johanneb/gpu_prog/GP26_Labs/Lab_1/lab1_2734183.out `
+  "C:\Users\johan\Downloads"
+
+
+
+*___ VSC remote connection to this same repo as here? ___*
+
+-setup
+Asked vsc copilot
+    -edited .ssh\config
+
+-every time
+		-open vsc
+		-ctrl+shift+p / bottom left green >< icon
+		-Remote-SSH: Connect to Host...
+		-choose roihu-gpu
+		-choose linux
+		-enter roihu psw
