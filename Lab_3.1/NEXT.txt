@@ -1,0 +1,7 @@
+Do I have to learn matrix multiplication again?
+    -like shape A x shape B
+        C_sz = matArow*matBcol;
+
+Allocate different amounts of memory depending on m,n n k?
+
+
