@@ -5,3 +5,22 @@ Do I have to learn matrix multiplication again?
 Allocate different amounts of memory depending on m,n n k?
 
 
+
+
+20.11
+
+Found matrix multipl. basic example in lecture 3 slides 
+
+
+FIRST - just a 4 x 4 matrix
+
+so sbatch --account=<your-project> run.sh 4 
+
+
+whip out my picture and complete it 
+    -block size / threads/block  / block dim
+        -are these all blocks even meaning the same block?
+        -when 2 D, is 16^2 blocks then 256 threads / block?
+            -let try it...
+            -or rather 4 x 4 and 16
+    -or ask ai
