@@ -15,7 +15,7 @@ __global__ void mysgemm(int m, int n, int k, const float *A, const float *B, flo
      ********************************************************************/
 
     // INSERT KERNEL CODE HERE
-
+    // aka the math
 
 
 
@@ -56,11 +56,13 @@ void basicSgemm(char transa, char transb, int m, int n, int k, float alpha, cons
     const unsigned int BLOCK_SIZE = 16; // Use 16x16 thread blocks
 
     //INSERT CODE HERE
+    // aka the block and grid dimensions
 
 
     // Invoke CUDA kernel -----------------------------------------------------
 
     //INSERT CODE HERE
+    // aka the launch, <<< >>> syntax
 
 
 
