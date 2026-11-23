@@ -14,7 +14,13 @@ Found matrix multipl. basic example in lecture 3 slides
 
 FIRST - just a 4 x 4 matrix
 
-so sbatch --account=<your-project> run.sh 4 
+* Compute C = A x B
+     *   where A is a (m x k) matrix
+     *   where B is a (k x n) matrix
+     *   where C is a (m x n) matrix
+     
+
+so sbatch --account=project_2021566 run.sh 4 
 
 
 whip out my picture and complete it 
@@ -24,3 +30,20 @@ whip out my picture and complete it
             -let try it...
             -or rather 4 x 4 and 16
     -or ask ai
+
+
+23.11.
+
+-wrtie conditionals for 4x4 and other inputs??
+    -or can I just re-use theirs?
+
+4 x 4 matrix multi works -commit
+
+next
+    -understand grid 
+        -also print out all the variables
+    -have ai print out the whole matrix multiplication
+    -read 3.1 reqs
+    -uncomment boundary fix
+
+
