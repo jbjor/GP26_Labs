@@ -43,6 +43,7 @@ next
     -understand grid 
         -also print out all the variables
     -have ai print out the whole matrix multiplication
+	-run the test 4x4 testversion			N
     -read 3.1 reqs
     -uncomment boundary fix
     -do 3.1
