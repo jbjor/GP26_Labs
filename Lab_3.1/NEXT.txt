@@ -40,12 +40,19 @@ whip out my picture and complete it
 4 x 4 matrix multi works -commit
 
 next
-    -understand grid 
+    -understand grid 					1.
         -also print out all the variables
+	-på nåt sätt lyckas vi allti hållas presis under att göra för manga block...
+
     -have ai print out the whole matrix multiplication
 	-run the test 4x4 testversion			N
     -read 3.1 reqs
     -uncomment boundary fix
     -do 3.1
+   
+    -fösök fatta hur m*k X k*n altti = ?kn matris?	2.
+	-säkert förklarar kernel koden?
+
+
 
 
