@@ -58,8 +58,8 @@ void basicSgemm(char transa, char transb, int m, int n, int k, float alpha, cons
 
     // Initialize thread block and kernel grid dimensions ---------------------
 
-    //const unsigned int BLOCK_SIZE = 16; // Use 16x16 = 256 thread blocks for final submission
-    const unsigned int BLOCK_SIZE = 4; // For 4x4
+    const unsigned int BLOCK_SIZE = 16; // Use 16x16 = 256 thread blocks for final submission
+    //const unsigned int BLOCK_SIZE = 4; // For 4x4
 
     
 
