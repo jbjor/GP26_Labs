@@ -20,9 +20,9 @@ __global__ void mysgemm(int m, int n, int k, const float *A, const float *B, flo
     unsigned int col = blockIdx.x * blockDim.x + threadIdx.x;
 
     // Check if the thread is within the bounds of the output matrix
-    //if (row >= m || col >= n) {
-      //  return;
-    //}
+    if (row >= m || col >= n) {
+        return;
+    }
 
     float sum = 0.0f;
     for (unsigned int i = 0; i < k; i++) {
