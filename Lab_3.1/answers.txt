@@ -1,0 +1,6 @@
+1. How many times is each element of each input matrix loaded during the execution of
+the kernel?
+
+For a square matrix of size m
+	-m^2 times, as each element in each input matrix is part of the all the other elements outputvalue for that exist in the same row and column in the result C matrix (as each input element).
+	In other words, each input element is part of the output of every element on the same row and column as said input element.
