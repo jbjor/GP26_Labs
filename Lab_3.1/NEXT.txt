@@ -45,5 +45,6 @@ next
     -have ai print out the whole matrix multiplication
     -read 3.1 reqs
     -uncomment boundary fix
+    -do 3.1
 
 
