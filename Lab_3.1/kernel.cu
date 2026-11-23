@@ -75,7 +75,12 @@ void basicSgemm(char transa, char transb, int m, int n, int k, float alpha, cons
     const dim3 block(BLOCK_SIZE, BLOCK_SIZE);
     const dim3 grid((n + BLOCK_SIZE - 1) / block.x,
                     (m + BLOCK_SIZE - 1) / block.y);    
-
+    printf("Launching kernel with %d threads per block and %d blocks\n", BLOCK_SIZE * BLOCK_SIZE, grid.x * grid.y);
+    printf("Grid dimensions: (%d, %d), Block dimensions: (%d, %d)\n", grid.x, grid.y, block.x, block.y);
+    printf("Grid: x? = n + BLOCK_SIZE - 1 = %d \n
+        Grid: x? = %d + %d - 1 = %d\n", n, BLOCK_SIZE, BLOCK_SIZE, n + BLOCK_SIZE - 1);
+    printf("Grid: y? = m + BLOCK_SIZE - 1 = %d \n
+        Grid: y? = %d + %d - 1 = %d\n", m, BLOCK_SIZE, BLOCK_SIZE, m + BLOCK_SIZE - 1);
 
 
     // Invoke CUDA kernel -----------------------------------------------------
