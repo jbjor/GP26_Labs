@@ -72,4 +72,5 @@ Be att implementera tiled
 	-explain how rows x-y work?
 
 
+Testa snurrar/funar de?
 
