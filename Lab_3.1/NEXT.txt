@@ -43,6 +43,9 @@ next
     -understand grid 					1.
         -also print out all the variables
 	-på nåt sätt lyckas vi allti hållas presis under att göra för manga block...
+	-edge case test?
+		-how? ask ai
+	-> skriv kommentar som visar att du förstått å som påminnelse
 
     -have ai print out the whole matrix multiplication
 	-run the test 4x4 testversion			N
@@ -53,6 +56,8 @@ next
     -fösök fatta hur m*k X k*n altti = ?kn matris?	2.
 	-säkert förklarar kernel koden?
 
+
+Läs 3.2 reqs
 
 
 
