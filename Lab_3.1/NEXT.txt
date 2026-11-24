@@ -59,5 +59,14 @@ next
 
 Läs 3.2 reqs
 
+-code for tiled matrix multi on lecture 5 slides page 12 onwards
+	-read whole lect 5 slides n my notes....
+
+For answers.txt tasks
+	-supposed to run the nsync comput w/e diagnostics?	NAH, READ WHOLE STEP 5.
+		-find ur notes on it, see if match w/ task description
+
+Be att implementera tiled, jämför med givna versionen
+
 
 
