@@ -66,7 +66,10 @@ For answers.txt tasks
 	-supposed to run the nsync comput w/e diagnostics?	NAH, READ WHOLE STEP 5.
 		-find ur notes on it, see if match w/ task description
 
-Be att implementera tiled, jämför med givna versionen
+Be att implementera tiled
+	-jämför med givna versionen
+		-hur?
+	-explain how rows x-y work?
 
 
 
