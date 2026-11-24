@@ -6,3 +6,22 @@ For a square matrix of size m
 	In other words, each input element is part of the output of every element on the same row and column as said input element. So this happens every time an output element is calculated, therefore m^2 times.
 
 So for any other size of matrix where m is number of rows and n is number of columns, m * n times.
+
+
+2. What is the memory-access to floating-point computation ratio in each thread? Con-
+sider multiplication and addition as separate operations, and ignore the global mem-
+ory store at the end. Only count global memory loads towards your off-chip band-
+width.
+
+-see at least slide 4 in lect 8 slides
+
+-let's consider a square matrix of byte size
+	-floats are 16 or 32 B
+	-but lets say they are 1 B each
+	-so for loading 8 B
+		-we multiply each 8 elements in A with the one element in B
+		-each product gets added to sum
+			-8 * 2 / 8 B
+		-but we have to load the whole B row/column too
+			-8 * 2 / 16 B
+		-> ratio 1
