@@ -14,6 +14,7 @@ ory store at the end. Only count global memory loads towards your off-chip band-
 width.
 
 -see at least slide 4 in lect 8 slides
+-also slide 6 at lect 5 slides
 
 -let's consider a square matrix of byte size
 	-floats are 16 or 32 B
