@@ -40,11 +40,12 @@ whip out my picture and complete it
 4 x 4 matrix multi works -commit
 
 next
-    -understand grid 					1.
+    -understand grid 					D
         -also print out all the variables
 	-på nåt sätt lyckas vi allti hållas presis under att göra för manga block...
 	-edge case test?
 		-how? ask ai
+		-räknas ti köra me 257 (block size +1) -> (sen block size -1?)
 	-> skriv kommentar som visar att du förstått å som påminnelse
 
     -have ai print out the whole matrix multiplication
@@ -55,6 +56,11 @@ next
    
     -fösök fatta hur m*k X k*n altti = ?kn matris?	2.
 	-säkert förklarar kernel koden?
+
+    -the input is the input matrix dimensions remember?
+	-so the size of ?block must be smaller than it?
+
+   
 
 
 Läs 3.2 reqs
