@@ -66,15 +66,16 @@ void basicSgemm(char transa, char transb, int m, int n, int k, float alpha, cons
 
     //INSERT CODE HERE
     // aka the block and grid dimensions
+    // grid is filled with blocks, and each block is filled with threads
     // stuff to use ; (int m, int n, int k, const float *A, const float *B, float* C) 
     //const unsigned int numThreadsPerBlock = 4; // For testing purposes, we can use a smaller number of threads per block
 
     //Number of blocks in the grid, with the added 1 to account for any remainder threads
     //const unsigned int numBlocks = n / numThreadsPerBlock + 1;
 
-    const dim3 block(BLOCK_SIZE, BLOCK_SIZE);
-    const dim3 grid((n + BLOCK_SIZE - 1) / block.x,
-                    (m + BLOCK_SIZE - 1) / block.y);  
+    const dim3 block(BLOCK_SIZE, BLOCK_SIZE);           // dim3 can take 1, 2, or 3 arguments to specify the dimensions of the thread block
+    const dim3 grid((n + BLOCK_SIZE - 1) / block.x,     // takes in nubmer of blocks in the x and y dimensions
+                    (m + BLOCK_SIZE - 1) / block.y);    // rounding up, rather than down which is default in c
     
     printf("Launching kernel with %d threads per block and %d blocks\n", BLOCK_SIZE * BLOCK_SIZE, grid.x * grid.y);
     printf("Grid dimensions: (%d, %d), Block dimensions: (%d, %d)\n", grid.x, grid.y, block.x, block.y);
