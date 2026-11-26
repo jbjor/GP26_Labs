@@ -2,7 +2,21 @@ In your kernel implementation, how many threads can be simultaneously scheduled
 for execution on a GH200 GPU? Show your work.
 
 
-ptxas info    : Used 32 registers, used 1 barriers, 2048 bytes smem
+ptxas info    : Used 32 registers, used 1 barriers, 2048 bytes s(hared)mem
 
 
 Well, the point of tiling is to load memory and use it for many threads simultaneously.
+
+
+For how many threads can 2048 B supply data maximally?
+
+Need four bytes per float or element in matrix.
+	2048 B / 4 B = 512
+
+Furthermore, what do we put in the shared memory, its is matrices A and B, but is it also C?
+
+
+Build as large input matrices as these allow, then allocate each a thread. 
+
+
+Lastly still needs to apply a division for warp size, which was always ?32?	
