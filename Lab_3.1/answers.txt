@@ -16,13 +16,16 @@ width.
 -see at least slide 4 in lect 8 slides
 -also slide 6 at lect 5 slides
 
--let's consider a square matrix of byte size
-	-floats are 16 or 32 B
-	-but lets say they are 1 B each
+-let's consider a square matrix of size 8
+	-floats are 4 B
 	-so for loading 8 B
-		-we multiply each 8 elements in A with the one element in B
-		-each product gets added to sum
-			-8 * 2 / 8 B
-		-but we have to load the whole B row/column too
-			-8 * 2 / 16 B
-		-> ratio 1
+		-we multiply each 8 elements in a row for A with a single element in B
+		-also each product gets added to sum (*2)
+			-8 * 2 / 8 elements
+		-but we have to load the whole B column too
+			-8 * 2 / 16 elements
+		-one element is 4 B
+			-> (8 * 2) / 16 * 4
+			= 16 / 64
+			= 0,25
+		-> the memory-access to floating-point computation ratio is 4
