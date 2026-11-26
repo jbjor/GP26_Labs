@@ -1,4 +1,8 @@
-
+In your kernel implementation, how many threads can be simultaneously scheduled
+for execution on a GH200 GPU? Show your work.
 
 
 ptxas info    : Used 32 registers, used 1 barriers, 2048 bytes smem
+
+
+Well, the point of tiling is to load memory and use it for many threads simultaneously.
