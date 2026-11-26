@@ -1,0 +1,4 @@
+
+
+
+ptxas info    : Used 32 registers, used 1 barriers, 2048 bytes smem
